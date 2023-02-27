@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin page</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th scope="col">id</th>
+        <th scope="col">username</th>
+        <th scope="col">password</th>
+        <th scope="col">role</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+
+        <td>
+            <div><a th:href="@{admin/{id}(id=${user.getId()})}" th:text="${user.getId()}">user</a></div>
+        </td>
+        <td th:text="${user.getUsername()}">username</td>
+        <td th:text="${user.getPassword()}">password</td>
+        <td th:text="${user.getRoles()}">role</td>
+
+        <td><a th:href="@{/admin/update/{id}(id=${user.getId()})}">
+            <input type="submit" value="Update user"></a></td>
+        <td><a th:href="@{/admin/delete/{id}(id=${user.getId()})}">
+            <input type="submit" value="Delete user"></a></td>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+
+</div>
+<p><a href="admin/create"><input type="submit" value="create new user"></a></p>
+</div>
+</div>
+<p><a href="/logout"><input type="submit" value="logout"></a></p>
+</div>
+
+</body>
+</html>

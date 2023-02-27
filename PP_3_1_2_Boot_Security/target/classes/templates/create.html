@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create user</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/admin/create}" th:object="${user}" }>
+    <label for="username">Input username: </label>
+    <input type="text" th:field="*{username}" id="username">
+    <br>
+    <br>
+    <label for="password">Input password</label>
+    <input type="text" th:field="*{password}" id="password">
+    <br>
+    <br>
+    <div class="form-group row">
+        <label class="col-4 col-form-label">Roles: </label>
+        <div class="col-8">
+            <th:block th:each="role: ${roleList}">
+                <input type="checkbox" th:field="*{roles}"
+                       th:text="${role.getRole()}" th:value="${role.getId()}" class="m-2" />
+            </th:block>
+        </div>
+    </div>
+    <br>
+    <br>
+<!--    </div>-->
+<!--    <p><a href="admin/create"><input type="submit" value="create user"></a></p>-->
+<!--    </div>-->
+    <input type="submit" value="Create user">
+
+</form>
+</body>
+</html>
